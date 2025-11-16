@@ -19,4 +19,7 @@ return {
 
   -- 导入工具插件配置
   { import = "plugins.configs.tools" },
+
+  -- 导入文件搜索配置
+  { import = "plugins.configs.telescope" },
 }

@@ -6,23 +6,11 @@ return {
                         require("osc52").setup({
                                 max_length = 0, -- 禁用最大长度限制
                                 silent = false, -- 禁用静默模式
-                                trim = false, -- 禁用修剪
+                                trim = false,   -- 禁用修剪
                         })
 
                         -- 设置复制到系统剪切板的快捷键
-                        vim.keymap.set("v", "<leader>y", require("osc52").copy_visual, { desc = "复制到系统剪切板 (osc52)" })
-                        vim.keymap.set("n", "<leader>Y", require("osc52").copy_operator, { desc = "复制操作到系统剪切板 (osc52)" })
-
-                        -- 设置粘贴快捷键
-                        vim.keymap.set("n", "<leader>p", function()
-                                vim.fn.setreg('"', vim.fn.getreg('+'))
-                                vim.cmd('normal! p')
-                        end, { desc = "从系统剪切板粘贴" })
-
-                        vim.keymap.set("v", "<leader>p", function()
-                                vim.fn.setreg('"', vim.fn.getreg('+'))
-                                vim.cmd('normal! p')
-                        end, { desc = "从系统剪切板粘贴" })
+                        -- 注意：剪切板快捷键已移至 core.keymaps.clipboard
                 end,
         },
 
@@ -34,9 +22,9 @@ return {
                 config = function()
                         require("smartyank").setup({
                                 highlight = {
-                                        enabled = true, -- highlight yanked text
+                                        enabled = true,        -- highlight yanked text
                                         higroup = "IncSearch", -- highlight group of yanked text
-                                        timeout = 2000, -- timeout for clearing the highlight
+                                        timeout = 2000,        -- timeout for clearing the highlight
                                 },
                                 clipboard = {
                                         enabled = true,

@@ -9,8 +9,8 @@ local keymap = vim.keymap
 keymap.set("i", "jk", "<ESC>", { desc = "退出插入模式" })
 
 -- 标签页导航
-keymap.set("n", "<TAB>", ":bn<CR>", { desc = "下一个缓冲区" })
-keymap.set("n", "<S-TAB>", ":bp<CR>", { desc = "上一个缓冲区" })
+keymap.set("n", "<C-Tab>", ":bn<CR>", { desc = "下一个缓冲区" })
+keymap.set("n", "<C-S-Tab>", ":bp<CR>", { desc = "上一个缓冲区" })
 
 -- === 文件树快捷键 ===
 

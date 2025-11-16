@@ -327,4 +327,94 @@ return {
       require("telescope").load_extension("neoclip")
     end,
   },
+
+  -- === AI 代码助手 ===
+
+  -- Avante.nvim - 现代化的 AI 代码助手
+  {
+    "avante-nvim/avante.nvim",
+    event = "VeryLazy",
+    build = ":UpdateRemotePlugins",
+    config = function()
+      require("avante").setup({
+        -- 基础配置
+        enabled = true,
+        auto_start = true,
+        
+        -- 模型配置
+        model = {
+          provider = "openai", -- 可选: openai, anthropic, local
+          name = "gpt-4",      -- 模型名称
+          temperature = 0.7,
+          max_tokens = 2048,
+        },
+        
+        -- UI 配置
+        ui = {
+          border = "rounded",
+          width = 0.8,
+          height = 0.8,
+          position = "50%",
+        },
+        
+        -- 功能配置
+        features = {
+          code_completion = true,
+          chat = true,
+          code_actions = true,
+          documentation = true,
+          refactoring = true,
+        },
+        
+        -- 快捷键配置
+        keymaps = {
+          toggle_chat = "<leader>ac",
+          complete_code = "<leader>aa",
+          explain_code = "<leader>ae",
+          refactor_code = "<leader>ar",
+          fix_issues = "<leader>af",
+        },
+        
+        -- 语言特定配置
+        languages = {
+          lua = {
+            enabled = true,
+            style_guide = "strict",
+          },
+          python = {
+            enabled = true,
+            style_guide = "pep8",
+          },
+          javascript = {
+            enabled = true,
+            style_guide = "standard",
+          },
+          typescript = {
+            enabled = true,
+            style_guide = "strict",
+          },
+          rust = {
+            enabled = true,
+            style_guide = "rustfmt",
+          },
+          go = {
+            enabled = true,
+            style_guide = "gofmt",
+          },
+        },
+        
+        -- 高级配置
+        advanced = {
+          cache_enabled = true,
+          cache_size = 1000,
+          context_window = 4096,
+          streaming = true,
+        }
+      })
+    end,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+  },
 }

@@ -42,3 +42,19 @@ keymap.set("n", "<leader>gc", function()
   require("telescope.builtin").git_commits()
 end, { desc = "搜索 Git 提交" })
 
+-- 自定义布局搜索文件
+keymap.set("n", "<leader>fc", function()
+  require("telescope.builtin").find_files({
+    layout_strategy = "flex",
+    layout_config = {
+      flex = {
+        flip_columns = 120,
+      },
+      horizontal = {
+        preview_width = 0.6,
+        prompt_position = "bottom",
+      },
+    },
+  })
+end, { desc = "自定义布局搜索文件" })
+

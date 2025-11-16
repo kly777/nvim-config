@@ -22,22 +22,73 @@ return {
               ["<ESC>"] = actions.close,
             },
           },
+          layout_strategy = "flex",
+          layout_config = {
+            flex = {
+              flip_columns = 120,
+            },
+            horizontal = {
+              preview_width = 0.6,
+              prompt_position = "bottom",
+            },
+            vertical = {
+              width = 0.8,
+              height = 0.8,
+              preview_height = 0.5,
+            },
+          },
         },
         pickers = {
           find_files = {
-            theme = "dropdown",
+            layout_config = {
+              horizontal = {
+                preview_width = 0.6,
+                prompt_position = "bottom",
+              },
+            },
           },
           live_grep = {
-            theme = "dropdown",
+            layout_config = {
+              horizontal = {
+                preview_width = 0.6,
+                prompt_position = "bottom",
+              },
+            },
           },
           buffers = {
-            theme = "dropdown",
+            layout_config = {
+              horizontal = {
+                preview_width = 0.6,
+                prompt_position = "bottom",
+              },
+            },
           },
         },
       })
 
       -- 启用 fzf 原生排序（如果安装了）
       pcall(telescope.load_extension, "fzf")
+
+      -- 自定义布局函数：左下搜索，左上文件列表，右边文件内容预览
+      local function custom_layout()
+        return {
+          layout_strategy = "flex",
+          layout_config = {
+            flex = {
+              flip_columns = 120,
+            },
+            horizontal = {
+              preview_width = 0.6,
+              prompt_position = "bottom",
+            },
+          },
+        }
+      end
+
+      -- 为文件搜索设置自定义布局
+      vim.keymap.set("n", "<leader>fc", function()
+        require("telescope.builtin").find_files(custom_layout())
+      end, { desc = "自定义布局搜索文件" })
     end,
   },
 }

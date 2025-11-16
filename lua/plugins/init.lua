@@ -173,6 +173,38 @@ return {
     end,
   },
 
+  -- 括号自动补全
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    config = function()
+      require("nvim-autopairs").setup({
+        check_ts = true, -- 使用 treesitter 检查
+        ts_config = {
+          lua = { "string" }, -- 在 lua 中不补全字符串
+          javascript = { "template_string" },
+          java = false, -- 不在 java 中启用
+        },
+        disable_filetype = { "TelescopePrompt", "spectre_panel" },
+        fast_wrap = {
+          map = "<M-e>",
+          chars = { "{", "[", "(", '"', "'" },
+          pattern = [=[[%'%"%>%]%)%}%,]]=],
+          end_key = "$",
+          keys = "qwertyuiopzxcvbnmasdfghjkl",
+          check_comma = true,
+          highlight = "Search",
+          highlight_grey = "Comment",
+        },
+      })
+
+      -- 与 cmp 集成
+      local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+      local cmp = require("cmp")
+      cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+    end,
+  },
+
   -- LSP 增强 UI
   {
     "glepnir/lspsaga.nvim",
@@ -196,6 +228,103 @@ return {
     event = "LspAttach",
     config = function()
       require("fidget").setup({})
+    end,
+  },
+
+  -- 剪切板管理
+  {
+    "AckslD/nvim-neoclip.lua",
+    dependencies = {
+      "kkharji/sqlite.lua",
+      "nvim-telescope/telescope.nvim",
+    },
+    config = function()
+      require("neoclip").setup({
+        history = 1000,
+        enable_persistent_history = true,
+        continuous_sync = true,
+        db_path = vim.fn.stdpath("data") .. "/databases/neoclip.sqlite3",
+        filter = nil,
+        preview = true,
+        prompt = nil,
+        default_register = '"',
+        default_register_macros = 'q',
+        enable_macro_history = true,
+        content_spec_column = false,
+        on_select = {
+          move_to_front = false,
+          close_telescope = true,
+        },
+        on_paste = {
+          set_reg = false,
+          move_to_front = false,
+          close_telescope = true,
+        },
+        on_replay = {
+          set_reg = false,
+          move_to_front = false,
+          close_telescope = true,
+        },
+        on_custom_action = {
+          close_telescope = true,
+        },
+        keys = {
+          telescope = {
+            i = {
+              select = '<cr>',
+              paste = '<c-p>',
+              paste_behind = '<c-k>',
+              replay = '<c-q>',
+              delete = '<c-d>',
+              edit = '<c-e>',
+              custom = {},
+            },
+            n = {
+              select = '<cr>',
+              paste = 'p',
+              paste_behind = 'P',
+              replay = 'q',
+              delete = 'd',
+              edit = 'e',
+              custom = {},
+            },
+          },
+        },
+      })
+    end,
+  },
+
+  -- 系统剪切板集成
+  {
+    "ojroques/nvim-osc52",
+    config = function()
+      require("osc52").setup({
+        max_length = 0, -- 禁用最大长度限制
+        silent = false, -- 禁用静默模式
+        trim = false,   -- 禁用修剪
+      })
+
+      -- 设置复制到系统剪切板的快捷键
+      vim.keymap.set("v", "<leader>y", require("osc52").copy_visual, { desc = "复制到系统剪切板" })
+      vim.keymap.set("n", "<leader>Y", require("osc52").copy_operator, { desc = "复制操作到系统剪切板" })
+    end,
+  },
+
+  -- 剪切板历史查看器
+  {
+    "nvim-telescope/telescope.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    config = function()
+      require("telescope").setup({
+        extensions = {
+          neoclip = {
+            default_register = '"',
+          },
+        },
+      })
+      require("telescope").load_extension("neoclip")
     end,
   },
 }

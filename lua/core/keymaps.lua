@@ -39,3 +39,18 @@ keymap.set("n", "<leader>f", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>"
 keymap.set("n", "<leader>d", "<cmd>lua vim.diagnostic.open_float()<CR>", { desc = "显示诊断信息" })
 keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", { desc = "上一个诊断" })
 keymap.set("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", { desc = "下一个诊断" })
+
+-- === 剪切板快捷键 ===
+
+-- 系统剪切板操作
+keymap.set("v", "<leader>y", '"+y', { desc = "复制到系统剪切板" })
+keymap.set("n", "<leader>Y", '"+Y', { desc = "复制行到系统剪切板" })
+keymap.set("v", "<leader>p", '"+p', { desc = "从系统剪切板粘贴" })
+keymap.set("n", "<leader>p", '"+p', { desc = "从系统剪切板粘贴" })
+
+-- 剪切板历史
+keymap.set("n", "<leader>sy", "<cmd>Telescope neoclip<CR>", { desc = "查看剪切板历史" })
+
+-- 系统剪切板集成（osc52）
+keymap.set("v", "<leader>cy", require("osc52").copy_visual, { desc = "复制到系统剪切板（osc52）" })
+keymap.set("n", "<leader>cY", require("osc52").copy_operator, { desc = "复制操作到系统剪切板（osc52）" })

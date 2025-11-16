@@ -42,6 +42,21 @@ keymap.set("n", "<leader>gc", function()
   require("telescope.builtin").git_commits()
 end, { desc = "搜索 Git 提交" })
 
+-- 搜索 git 状态（修改的文件）
+keymap.set("n", "<leader>gs", function()
+  require("telescope.builtin").git_status()
+end, { desc = "查看 Git 状态" })
+
+-- 搜索 git 分支
+keymap.set("n", "<leader>gb", function()
+  require("telescope.builtin").git_branches()
+end, { desc = "查看 Git 分支" })
+
+-- 搜索 git stash
+keymap.set("n", "<leader>gt", function()
+  require("telescope.builtin").git_stash()
+end, { desc = "查看 Git Stash" })
+
 -- 自定义布局搜索文件
 keymap.set("n", "<leader>fc", function()
   require("telescope.builtin").find_files({

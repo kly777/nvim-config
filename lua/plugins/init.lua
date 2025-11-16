@@ -22,4 +22,7 @@ return {
 
   -- 导入文件搜索配置
   { import = "plugins.configs.telescope" },
+
+  -- 导入 Git 状态显示配置
+  { import = "plugins.configs.gitsigns" },
 }

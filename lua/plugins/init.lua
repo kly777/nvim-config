@@ -1,5 +1,4 @@
 -- 主插件配置文件
--- 通过模块化方式组织插件配置
 
 return {
         -- 导入高亮方案配置
@@ -31,4 +30,7 @@ return {
 
         -- 导入缩进可视化配置
         { import = "plugins.configs.indent" },
+        
+          -- 导入代码折叠和大纲配置
+          { import = "plugins.configs.folding" },
 }

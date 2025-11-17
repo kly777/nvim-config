@@ -22,4 +22,3 @@ keymap.set("n", "<leader>f", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>"
 keymap.set("n", "<leader>d", "<cmd>lua vim.diagnostic.open_float()<CR>", { desc = "显示诊断信息" })
 keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", { desc = "上一个诊断" })
 keymap.set("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", { desc = "下一个诊断" })
-

@@ -10,23 +10,22 @@ keymap.set("n", "<leader>p", '"+p', { desc = "从系统剪切板粘贴" })
 
 -- 剪切板历史
 keymap.set("n", "<leader>sy", function()
-  require("telescope").extensions.neoclip.default()
+    require("telescope").extensions.neoclip.default()
 end, { desc = "查看剪切板历史" })
 
 -- 系统剪切板集成（osc52）
 keymap.set("v", "<leader>cy", function()
-  if package.loaded["osc52"] then
-    require("osc52").copy_visual()
-  else
-    vim.fn.setreg('+', vim.fn.getreg('"'))
-  end
+    if package.loaded["osc52"] then
+        require("osc52").copy_visual()
+    else
+        vim.fn.setreg('+', vim.fn.getreg('"'))
+    end
 end, { desc = "复制到系统剪切板（osc52）" })
 
 keymap.set("n", "<leader>cY", function()
-  if package.loaded["osc52"] then
-    require("osc52").copy_operator()
-  else
-    vim.fn.setreg('+', vim.fn.getreg('"'))
-  end
+    if package.loaded["osc52"] then
+        require("osc52").copy_operator()
+    else
+        vim.fn.setreg('+', vim.fn.getreg('"'))
+    end
 end, { desc = "复制操作到系统剪切板（osc52）" })
-

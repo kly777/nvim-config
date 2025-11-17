@@ -28,4 +28,7 @@ return {
 
   -- 导入状态栏配置
   { import = "plugins.configs.lualine" },
+
+  -- 导入缩进可视化配置
+  { import = "plugins.configs.indent" },
 }

@@ -57,6 +57,11 @@ keymap.set("n", "<leader>gt", function()
     require("telescope.builtin").git_stash()
 end, { desc = "查看 Git Stash" })
 
+-- 搜索诊断信息
+keymap.set("n", "<leader>fd", function()
+    require("telescope.builtin").diagnostics()
+end, { desc = "搜索诊断信息" })
+
 -- 自定义布局搜索文件
 keymap.set("n", "<leader>fc", function()
     require("telescope.builtin").find_files({

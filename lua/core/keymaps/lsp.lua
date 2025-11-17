@@ -22,3 +22,7 @@ keymap.set("n", "<leader>f", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>"
 keymap.set("n", "<leader>d", "<cmd>lua vim.diagnostic.open_float()<CR>", { desc = "显示诊断信息" })
 keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", { desc = "上一个诊断" })
 keymap.set("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", { desc = "下一个诊断" })
+
+-- 快速修复
+keymap.set("n", "<leader>qf", "<cmd>lua vim.diagnostic.setqflist()<CR>", { desc = "打开快速修复列表" })
+keymap.set("n", "<leader>ql", "<cmd>lua vim.diagnostic.setloclist()<CR>", { desc = "打开位置列表" })

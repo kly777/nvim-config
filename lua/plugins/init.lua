@@ -25,4 +25,7 @@ return {
 
   -- 导入 Git 状态显示配置
   { import = "plugins.configs.gitsigns" },
+
+  -- 导入状态栏配置
+  { import = "plugins.configs.lualine" },
 }

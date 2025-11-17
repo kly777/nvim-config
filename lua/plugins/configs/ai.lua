@@ -19,7 +19,7 @@ return {
                         provider = "deepseek",
                         providers = {
                                 deepseek = {
-                                        __inherited_from="openai",
+                                        __inherited_from = "openai",
                                         endpoint = "https://api.deepseek.com",
                                         model = "deepseek-chat",
                                         timeout = 30000, -- Timeout in milliseconds
@@ -27,7 +27,7 @@ return {
                                                 temperature = 0.75,
                                                 max_tokens = 8192,
                                         },
-                                        api_key_name="AVANTE_DEEPSEEK_API_KEY",
+                                        api_key_name = "AVANTE_DEEPSEEK_API_KEY",
                                 },
                         },
                 },
@@ -42,7 +42,6 @@ return {
                         "stevearc/dressing.nvim",        -- for input provider dressing
                         "folke/snacks.nvim",             -- for input provider snacks
                         "nvim-tree/nvim-web-devicons",   -- or echasnovski/mini.icons
-                        "zbirenbaum/copilot.lua",        -- for providers='copilot'
                         {
                                 -- support for image pasting
                                 "HakonHarnes/img-clip.nvim",
@@ -61,12 +60,15 @@ return {
                                 },
                         },
                         {
-                                -- Make sure to set this up properly if you have lazy=true
-                                'MeanderingProgrammer/render-markdown.nvim',
+                                "OXY2DEV/markview.nvim",
+                                enabled = true,
+                                lazy = false,
+                                ft = { "markdown", "norg", "rmd", "org", "vimwiki", "Avante" },
                                 opts = {
-                                        file_types = { "markdown", "Avante" },
+                                        filetypes = { "markdown", "norg", "rmd", "org", "vimwiki", "Avante" },
+                                        buf_ignore = {},
+                                        max_length = 99999,
                                 },
-                                ft = { "markdown", "Avante" },
                         },
                 },
         },

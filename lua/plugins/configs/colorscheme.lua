@@ -8,7 +8,7 @@ return {
       require("tokyonight").setup({
         -- 可选配置，使用默认设置
         style = "night", -- 可选: storm, night, day
-        transparent = false,
+        transparent = true,
         terminal_colors = true,
         styles = {
           comments = { italic = true },

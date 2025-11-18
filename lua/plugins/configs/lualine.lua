@@ -22,8 +22,8 @@ return {
                         lualine.setup({
                                 options = {
                                         theme = "auto", -- 自动匹配颜色主题
-                                        component_separators = { left = "", right = "" },
-                                        section_separators = { left = "", right = "" },
+                                        component_separators = { left = "|", right = "|" },
+                                        section_separators = { left = "", right = "" },
                                         disabled_filetypes = {
                                                 statusline = { "NvimTree", "alpha" },
                                         },
@@ -33,22 +33,35 @@ return {
                                         lualine_a = {
                                                 {
                                                         "mode",
-                                                        separator = { left = "", right = "" },
-                                                        padding = { left = 1, right = 1 },
+                                                        fmt = function(str)
+                                                                -- 模式缩写
+                                                                local mode_map = {
+                                                                        ["NORMAL"] = "N",
+                                                                        ["INSERT"] = "I",
+                                                                        ["VISUAL"] = "V",
+                                                                        ["V-LINE"] = "VL",
+                                                                        ["V-BLOCK"] = "VB",
+                                                                        ["REPLACE"] = "R",
+                                                                        ["COMMAND"] = "C",
+                                                                }
+                                                                return mode_map[str] or str:sub(1, 2)
+                                                        end,
                                                 },
                                         },
                                         lualine_b = {
                                                 {
                                                         "branch",
-                                                        icon = "",
-                                                        color = { fg = colors.violet, gui = "bold" },
+                                                        icon = "", -- 移除图标
+                                                        fmt = function(str)
+                                                                return "br:" .. (str:sub(1, 8) or "main")
+                                                        end,
                                                 },
                                                 {
                                                         "diff",
                                                         symbols = {
-                                                                added = " ",
-                                                                modified = " ",
-                                                                removed = " ",
+                                                                added = "+",    -- 添加
+                                                                modified = "~", -- 修改
+                                                                removed = "-",  -- 删除
                                                         },
                                                         diff_color = {
                                                                 added = { fg = colors.cyan },
@@ -62,8 +75,8 @@ return {
                                                         "filename",
                                                         path = 1, -- 显示相对路径
                                                         symbols = {
-                                                                modified = " ●", -- 修改状态
-                                                                readonly = " ", -- 只读状态
+                                                                modified = " mod", -- 修改状态
+                                                                readonly = " ro", -- 只读状态
                                                                 unnamed = "[未命名]", -- 未命名文件
                                                         },
                                                 },
@@ -73,31 +86,46 @@ return {
                                                         "diagnostics",
                                                         sources = { "nvim_diagnostic" },
                                                         symbols = {
-                                                                error = " ",
-                                                                warn = " ",
-                                                                info = " ",
-                                                                hint = " ",
+                                                                error = "E:", -- 错误
+                                                                warn = "W:",  -- 警告
+                                                                info = "I:",  -- 信息
+                                                                hint = "H:",  -- 提示
                                                         },
                                                 },
-                                                "encoding",
+                                                {
+                                                        "encoding",
+                                                        fmt = function(str)
+                                                                return "enc:" ..
+                                                                (str == "utf-8" and "utf8" or str:sub(1, 4))
+                                                        end,
+                                                },
                                                 {
                                                         "fileformat",
                                                         symbols = {
-                                                                unix = "", -- LF
-                                                                dos = "", -- CRLF
-                                                                mac = "", -- CR
+                                                                unix = "LF",  -- Linux/Unix
+                                                                dos = "CRLF", -- Windows
+                                                                mac = "CR",   -- Mac
                                                         },
                                                 },
-                                                "filetype",
+                                                {
+                                                        "filetype"
+
+                                                },
                                         },
                                         lualine_y = {
-                                                "progress",
+                                                {
+                                                        "progress",
+                                                        fmt = function(str)
+                                                                return "Ln " .. str
+                                                        end,
+                                                },
                                         },
                                         lualine_z = {
                                                 {
                                                         "location",
-                                                        separator = { left = "", right = "" },
-                                                        padding = { left = 1, right = 1 },
+                                                        fmt = function(str)
+                                                                return "Col " .. str
+                                                        end,
                                                 },
                                         },
                                 },

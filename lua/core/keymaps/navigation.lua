@@ -20,3 +20,6 @@ keymap.set("n", "<C-Up>", ":resize +2<CR>", { desc = "增加窗口高度" })
 keymap.set("n", "<C-Down>", ":resize -2<CR>", { desc = "减少窗口高度" })
 keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", { desc = "减少窗口宽度" })
 keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", { desc = "增加窗口宽度" })
+
+-- Tab管理
+keymap.set("n","<C-n>",":tabnew<CR>")

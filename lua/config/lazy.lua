@@ -12,7 +12,8 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
         os.exit(1)
     end
 end
-vim.opt.rtp:prepend(lazypath)
+
+-- rtp 选项已在 core/options.lua 中统一设置
 
 
 vim.g.mapleader = " "

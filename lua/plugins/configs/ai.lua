@@ -13,6 +13,6 @@ return {
         }
 
         -- Required for `opts.auto_reload`.
-        vim.o.autoread = true
+        -- autoread 选项已在 core/options.lua 中统一设置
     end,
 }

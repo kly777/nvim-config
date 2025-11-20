@@ -6,7 +6,7 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       -- 可选依赖，用于更好的文件搜索
-      {"nvim-telescope/telescope-fzf-native.nvim", build = "make"},
+      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     },
     config = function()
       local telescope = require("telescope")
@@ -18,7 +18,8 @@ return {
             i = {
               ["<C-j>"] = actions.move_selection_next,
               ["<C-k>"] = actions.move_selection_previous,
-              ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+              ["<C-q>"] = actions.send_selected_to_qflist + actions
+                  .open_qflist,
               ["<ESC>"] = actions.close,
             },
           },
@@ -92,4 +93,3 @@ return {
     end,
   },
 }
-

@@ -2,33 +2,15 @@ local keymap = vim.keymap
 
 -- === AI 代码助手快捷键 ===
 
--- Avante.nvim AI 助手
-keymap.set("n", "<leader>ac", function()
-    if package.loaded["avante"] then
-        require("avante").toggle_chat()
-    end
-end, { desc = "切换 AI 聊天" })
-
-keymap.set("n", "<leader>aa", function()
-    if package.loaded["avante"] then
-        require("avante").code_completion()
-    end
-end, { desc = "AI 代码补全" })
-
-keymap.set("n", "<leader>ae", function()
-    if package.loaded["avante"] then
-        require("avante").explain_code()
-    end
-end, { desc = "AI 解释代码" })
-
-keymap.set("n", "<leader>ar", function()
-    if package.loaded["avante"] then
-        require("avante").refactor_code()
-    end
-end, { desc = "AI 重构代码" })
-
-keymap.set("n", "<leader>af", function()
-    if package.loaded["avante"] then
-        require("avante").fix_issues()
-    end
-end, { desc = "AI 修复问题" })
+-- OpenCode AI 助手
+keymap.set({ "n", "x" }, "<leader>aa", function() require("opencode").ask("@this: ", { submit = true }) end,
+    { desc = "Ask opencode" })
+keymap.set({ "n", "x" }, "<leader>as", function() require("opencode").select() end,
+    { desc = "Execute opencode action…" })
+keymap.set({ "n", "x" }, "<leader>ap", function() require("opencode").prompt("@this") end,
+    { desc = "Add to opencode" })
+keymap.set({ "n", "t" }, "<leader>at", function() require("opencode").toggle() end, { desc = "Toggle opencode" })
+keymap.set("n", "<leader>au", function() require("opencode").command("session.half.page.up") end,
+    { desc = "opencode half page up" })
+keymap.set("n", "<leader>ad", function() require("opencode").command("session.half.page.down") end,
+    { desc = "opencode half page down" })

@@ -31,8 +31,33 @@ opt.smartcase = true
 --
 opt.termguicolors = true
 opt.signcolumn = "yes"
+
 -- Shell 配置
 opt.shell = "pwsh"                                                          -- 设置默认 shell 为 PowerShell
 opt.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command"    -- PowerShell 参数
 opt.shellquote = ""                                                               -- 引号设置
 opt.shellxquote = ""                                                              -- 外部引号设置
+
+-- 状态栏配置 (原生neovim状态栏)
+opt.laststatus = 2        -- 总是显示状态栏
+opt.ruler = true          -- 显示光标位置
+opt.showmode = true       -- 显示当前模式
+
+-- 自定义状态栏格式
+opt.statusline = [[%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P]]
+-- 状态栏格式说明:
+-- %<  : 如果状态栏太长，从这里开始截断
+-- %f  : 文件名
+-- %h  : 帮助文件标志
+-- %m  : 修改标志
+-- %r  : 只读标志
+-- %=  : 左右分界点
+-- %-14.(...) : 最小宽度14字符的内容
+-- %l  : 当前行号
+-- %c  : 当前列号
+-- %V  : 虚拟列号
+-- %P  : 文件位置百分比
+
+-- 可选的其他状态栏配置示例:
+-- 简洁版本: opt.statusline = [[%f %m %= %l:%c]]
+-- 详细信息版本: opt.statusline = [[%<%f\ %h%m%r%w\ %y\ [%{&ff}]\ [%{&enc}]\ %=%-14.(%l,%c%V%)\ %P]]

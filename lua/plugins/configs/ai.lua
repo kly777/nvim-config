@@ -9,7 +9,7 @@ return {
     config = function()
         ---@type opencode.Opts
         vim.g.opencode_opts = {
-
+            port=1999,
         }
 
         -- Required for `opts.auto_reload`.

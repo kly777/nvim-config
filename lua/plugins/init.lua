@@ -25,12 +25,9 @@ return {
         -- 导入 Git 状态显示配置
         { import = "plugins.configs.gitsigns" },
 
-        -- 导入状态栏配置
-        { import = "plugins.configs.lualine" },
-
         -- 导入缩进可视化配置
         { import = "plugins.configs.indent" },
-        
-          -- 导入代码折叠和大纲配置
-          { import = "plugins.configs.folding" },
+
+        -- 导入代码折叠和大纲配置
+        { import = "plugins.configs.folding" },
 }

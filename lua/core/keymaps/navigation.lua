@@ -20,3 +20,19 @@ keymap.set("n", "<C-Up>", ":resize +2<CR>", { desc = "增加窗口高度" })
 keymap.set("n", "<C-Down>", ":resize -2<CR>", { desc = "减少窗口高度" })
 keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", { desc = "减少窗口宽度" })
 keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", { desc = "增加窗口宽度" })
+
+-- === 缓冲区切换快捷键 ===
+keymap.set("n", "<leader>bn", ":bn<CR>", { desc = "下一个缓冲区" })
+keymap.set("n", "<leader>bp", ":bp<CR>", { desc = "上一个缓冲区" })
+keymap.set("n", "<leader>bd", ":bd<CR>", { desc = "关闭当前缓冲区" })
+keymap.set("n", "<leader>ba", ":bufdo bd<CR>", { desc = "关闭所有缓冲区" })
+keymap.set("n", "<leader>bl", ":ls<CR>", { desc = "列出所有缓冲区" })
+
+-- === 标签页切换快捷键 ===
+keymap.set("n", "<Tab>", ":tabnext<CR>", { desc = "下一个标签页" })
+keymap.set("n", "<S-Tab>", ":tabprevious<CR>", { desc = "上一个标签页" })
+keymap.set("n", "<leader>tc", ":tabclose<CR>", { desc = "关闭当前标签页" })
+keymap.set("n", "<leader>to", ":tabonly<CR>", { desc = "关闭其他标签页" })
+keymap.set("n", "<leader>tt", ":tabnew<CR>", { desc = "新建标签页" })
+keymap.set("n", "<leader>tm", ":tabmove", { desc = "移动标签页" })
+

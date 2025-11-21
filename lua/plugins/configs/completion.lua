@@ -62,11 +62,11 @@ return {
         event = "InsertEnter",
         config = function()
             require("nvim-autopairs").setup({
-                check_ts = true, -- 使用 treesitter 检查
+                check_ts = true,        -- 使用 treesitter 检查
                 ts_config = {
                     lua = { "string" }, -- 在 lua 中不补全字符串
                     javascript = { "template_string" },
-                    java = false, -- 不在 java 中启用
+                    java = false,       -- 不在 java 中启用
                 },
                 disable_filetype = { "TelescopePrompt", "spectre_panel" },
                 fast_wrap = {
@@ -88,4 +88,3 @@ return {
         end,
     },
 }
-

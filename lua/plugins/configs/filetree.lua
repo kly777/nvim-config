@@ -44,10 +44,10 @@ return {
                             folder = true,
                             folder_arrow = true,
                             git = true,
-                            modified = true,  -- 显示修改状态
+                            modified = true, -- 显示修改状态
                         },
                     },
-                    highlight_modified = "all",  -- 高亮所有修改的文件
+                    highlight_modified = "all", -- 高亮所有修改的文件
                     indent_markers = {
                         enable = true,
                         inline_arrows = true,
@@ -61,9 +61,9 @@ return {
                     },
                 },
                 modified = {
-                    enable = true,  -- 启用修改状态显示
-                    show_on_dirs = true,  -- 在目录上显示修改状态
-                    show_on_open_dirs = true,  -- 在打开的目录上显示修改状态
+                    enable = true,            -- 启用修改状态显示
+                    show_on_dirs = true,      -- 在目录上显示修改状态
+                    show_on_open_dirs = true, -- 在打开的目录上显示修改状态
                 },
                 filters = {
                     dotfiles = true,
@@ -78,4 +78,3 @@ return {
         lazy = true,
     },
 }
-

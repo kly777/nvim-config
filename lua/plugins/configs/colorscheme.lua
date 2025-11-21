@@ -9,7 +9,7 @@ return {
                 theme = "dragon"
             })
             -- 设置默认高亮方案
-            vim.cmd("colorscheme kanagawa")
+            vim.cmd("colorscheme kanagawa-dragon")
         end,
     },
 }

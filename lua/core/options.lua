@@ -49,4 +49,4 @@ opt.writebackup = false                         -- 禁用写入备份
 -- 性能优化
 opt.lazyredraw = true -- 延迟重绘，提升性能
 opt.updatetime = 300  -- 更新时间间隔（毫秒）
-opt.timeoutlen = 500  -- 按键超时时间
+opt.timeoutlen = 800  -- 按键超时时间

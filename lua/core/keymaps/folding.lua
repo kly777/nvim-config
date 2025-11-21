@@ -1,37 +1,21 @@
 local keymap = vim.keymap
 
--- === 文件大纲快捷键 (Aerial) ===
+-- === 符号导航快捷键 ===
 
--- 切换大纲
+-- 使用 Telescope 搜索文档符号
 keymap.set("n", "<leader>o", function()
-    require("aerial").toggle()
-end, { desc = "切换文件大纲" })
+    require("telescope.builtin").lsp_document_symbols()
+end, { desc = "搜索文档符号" })
 
--- 打开大纲
-keymap.set("n", "<leader>O", function()
-    require("aerial").open()
-end, { desc = "打开文件大纲" })
 
--- 关闭大纲
-keymap.set("n", "<leader>oc", function()
-    require("aerial").close()
-end, { desc = "关闭文件大纲" })
+-- 跳转到定义
+keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { desc = "跳转到定义" })
 
--- 导航大纲
-keymap.set("n", "[[", function()
-    require("aerial").prev()
-end, { desc = "上一个符号" })
+-- 查看引用
+keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", { desc = "查看引用" })
 
-keymap.set("n", "]]", function()
-    require("aerial").next()
-end, { desc = "下一个符号" })
-
--- 跳转到符号
-keymap.set("n", "<leader>os", function()
-    require("aerial").select()
-end, { desc = "选择符号" })
-
--- 大纲搜索
-keymap.set("n", "<leader>of", function()
-    require("telescope").extensions.aerial.aerial()
-end, { desc = "搜索符号" })
+-- 内置折叠快捷键
+keymap.set("n", "zc", "zc", { desc = "折叠当前区域" })
+keymap.set("n", "zo", "zo", { desc = "展开当前区域" })
+keymap.set("n", "zR", "zR", { desc = "展开所有折叠" })
+keymap.set("n", "zM", "zM", { desc = "折叠所有区域" })

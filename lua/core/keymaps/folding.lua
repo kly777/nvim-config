@@ -1,18 +1,16 @@
 local keymap = vim.keymap
 
+
 -- === 符号导航快捷键 ===
 
 -- 使用 Telescope 搜索文档符号
 keymap.set("n", "<leader>o", function()
-    require("telescope.builtin").lsp_document_symbols()
+        local params = vim.lsp.util.make_position_params(0, nil)
+        require("telescope.builtin").lsp_document_symbols({
+                -- 可以传递额外的参数
+        })
 end, { desc = "搜索文档符号" })
 
-
--- 跳转到定义
-keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { desc = "跳转到定义" })
-
--- 查看引用
-keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", { desc = "查看引用" })
 
 -- 内置折叠快捷键
 keymap.set("n", "zc", "zc", { desc = "折叠当前区域" })

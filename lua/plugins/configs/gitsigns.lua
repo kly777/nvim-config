@@ -12,15 +12,15 @@ return {
                 changedelete = { text = "~" },
                 untracked = { text = "┆" },
             },
-            signcolumn = true,             -- 在行号列显示 Git 状态
-            numhl = true,                  -- 不在行号上高亮
-            linehl = false,                -- 不在行上高亮
-            word_diff = false,             -- 不显示单词差异
+            signcolumn = true, -- 在行号列显示 Git 状态
+            numhl = true,      -- 不在行号上高亮
+            linehl = false,    -- 不在行上高亮
+            word_diff = false, -- 不显示单词差异
             watch_gitdir = {
                 follow_files = true,
             },
             attach_to_untracked = true,
-            current_line_blame = false,             -- 不在当前行显示 blame
+            current_line_blame = false, -- 不在当前行显示 blame
             current_line_blame_opts = {
                 virt_text = true,
                 virt_text_pos = "eol",
@@ -30,7 +30,7 @@ return {
             current_line_blame_formatter = "<author>, <author_time:%Y-%m-%d> - <summary>",
             sign_priority = 6,
             update_debounce = 100,
-            status_formatter = nil,             -- 使用默认状态格式化
+            status_formatter = nil, -- 使用默认状态格式化
             max_file_length = 40000,
             preview_config = {
                 -- 预览配置

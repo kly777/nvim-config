@@ -1,18 +1,34 @@
 return {
-        "NickvanDyke/opencode.nvim",
-        dependencies = {
-                -- Recommended for `ask()` and `select()`.
-                -- Required for `snacks` provider.
-                ---@module 'snacks' <- Loads `snacks.nvim` types for configuration intellisense.
-                { "folke/snacks.nvim", opts = { input = {}, picker = {}, terminal = {} } },
+    "olimorris/codecompanion.nvim",
+    dependencies = {
+        "nvim-lua/plenary.nvim",
+        "ravitemer/mcphub.nvim",
+        {
+            "MeanderingProgrammer/render-markdown.nvim",
+            ft = { "markdown", "codecompanion" }
         },
-        config = function()
-                ---@type opencode.Opts
-                vim.g.opencode_opts = {
-                        port = 1999,
+    },
+    opts = {
+        extensions = {
+            mcphub = {
+                callback = "mcphub.extensions.codecompanion",
+                opts = {
+                    make_vars = true,
+                    make_slash_commands = true,
+                    show_result_in_chat = true
                 }
-
-                -- Required for `opts.auto_reload`.
-                -- autoread 选项已在 core/options.lua 中统一设置
-        end,
+            }
+        },
+        strategies = {
+            chat = {
+                adapter = "deepseek",
+            },
+            inline = {
+                adapter = "deepseek"
+            },
+            cmd = {
+                adapter = "deepseek"
+            }
+        }
+    }
 }

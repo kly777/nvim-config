@@ -164,8 +164,16 @@ vim.lsp.config("ts_ls", {})
 vim.lsp.config("gopls", {})
 vim.lsp.config("clangd", {})
 
--- efm (linters + formatters)
-do
+-- efm (linters + formatters) - lazy-loaded on first matching FileType
+-- Each require() for linter/formatter checks executables and takes 200-500ms.
+-- Deferring until first use saves ~3.7s on startup.
+local efm_configured = false
+local function setup_efm()
+	if efm_configured then
+		return
+	end
+	efm_configured = true
+
 	local luacheck = require("efmls-configs.linters.luacheck")
 	local stylua = require("efmls-configs.formatters.stylua")
 
@@ -229,7 +237,31 @@ do
 			},
 		},
 	})
+
+	-- Enable efm now that config is registered
+	vim.lsp.enable("efm")
+
+	-- Start efm for the current buffer if applicable
+	local ft = vim.bo.filetype
+	if vim.tbl_contains({
+		"c", "cpp", "css", "go", "html", "javascript", "javascriptreact",
+		"json", "jsonc", "lua", "markdown", "python", "sh",
+		"typescript", "typescriptreact", "vue", "svelte",
+	}, ft) then
+		vim.lsp.start({ name = "efm" })
+	end
 end
+
+vim.api.nvim_create_autocmd("FileType", {
+	group = augroup,
+	pattern = {
+		"c", "cpp", "css", "go", "html", "javascript", "javascriptreact",
+		"json", "jsonc", "lua", "markdown", "python", "sh",
+		"typescript", "typescriptreact", "vue", "svelte",
+	},
+	once = true,
+	callback = setup_efm,
+})
 
 vim.lsp.enable({
 	"lua_ls",
@@ -238,5 +270,4 @@ vim.lsp.enable({
 	"ts_ls",
 	"gopls",
 	"clangd",
-	"efm",
 })

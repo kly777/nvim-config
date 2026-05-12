@@ -237,7 +237,7 @@ local function setup_dynamic_statusline()
 				"%{v:lua.git_branch()}",
 				"\u{e0b1} ", -- nf-pl-left_hard_divider
 				"%{v:lua.file_type()}",
-				"\u{e0b1} ", -- nf-pl-left_hard_divider
+				" \u{e0b1} ", -- nf-pl-left_hard_divider
 				"%{v:lua.file_size()}",
 				"%=", -- Right-align everything after this
 				" \u{f017} %l:%c  %P ", -- nf-fa-clock_o for line/col
@@ -895,7 +895,16 @@ local function FloatingTerminal()
 		end
 	end
 	if not has_terminal then
-		vim.fn.termopen(os.getenv("SHELL"))
+    local shell = os.getenv("SHELL")
+    -- 如果 SHELL 环境变量不存在，使用默认值
+    if not shell or shell == "" then
+        if vim.fn.has("win32") == 1 then
+            shell = "powershell.exe"  -- Windows
+        else
+            shell = "/bin/bash"       -- Linux/macOS
+        end
+    end
+    vim.fn.termopen(shell)
 	end
 
 	terminal_state.is_open = true

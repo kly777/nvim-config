@@ -134,6 +134,7 @@ require("mini.trailspace").setup({})
 require("mini.bufremove").setup({})
 require("mini.notify").setup({})
 require("mini.icons").setup({})
+MiniIcons.mock_nvim_web_devicons()
 
 -- gitsigns
 require("gitsigns").setup({
